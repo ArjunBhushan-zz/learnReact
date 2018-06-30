@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import ValidationComponent from './ValidationComponent/ValidationComponent';
+import CharComponent from './CharComponent/CharComponent';
 class App extends Component {
   state = {
     persons: [
@@ -10,7 +12,8 @@ class App extends Component {
       {id: 'poklj', name: 'Dowson', age: 21}
     ],
     otherProperty: 'sup',
-    showPersons:false
+    showPersons:false,
+    input: 'Input'
   }
 
   nameChangeHandler = (id, e) => {
@@ -36,6 +39,14 @@ class App extends Component {
     this.setState({persons: newPersons});
   }
 
+  getInputHandler = (e) => {
+    this.setState({input: e.target.value});
+  }
+
+  // deleteCharHandler = (index, charList, e) => {
+  //   charList.splice(index,1);
+  //   this.setState({input: charList.join('')});
+  // }
   render() {
     const style = {
       backgroundColor: 'white',
@@ -59,11 +70,17 @@ class App extends Component {
                 </div>);
     }
 
+    let charList = this.state.input.trim().split('').map((char, index, array) => {
+      return <CharComponent char={char} click ={this.deleteCharHandler.bind(this,index,array)} key={index}/>
+    });
     return (
       <div className="App">
         <h1>Hi, I'm am a React App</h1>
         <button style= {style} onClick={this.togglePersonHandler}>Toggle Persons</button>
-        {persons}
+        <input className= "input-field" type= "text" onChange= {this.getInputHandler} value= {this.state.input}/>
+        <ValidationComponent input = {this.state.input}/>
+          {charList}
+          {persons}
       </div>
     );
   }
