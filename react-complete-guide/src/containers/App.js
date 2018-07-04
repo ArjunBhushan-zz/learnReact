@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from './../components/Persons/Persons';
 import Cockpit from './../components/Cockpit/Cockpit';
+import WithClass from './../hoc/WithClass';
 
 class App extends PureComponent {
   constructor(props) {
@@ -14,7 +15,8 @@ class App extends PureComponent {
         {id: 'vscsr', name: 'Brian', age: 18},
         {id: 'poklj', name: 'Dowson', age: 21}
       ],
-      showPersons:false
+      showPersons:false,
+      toggleTimes: 0
     };
   }
 
@@ -46,8 +48,11 @@ class App extends PureComponent {
   }
 
   togglePersonHandler = () => {
-    this.setState({
-      showPersons: !this.state.showPersons
+    this.setState((prevState, props) => {
+      return ({
+        showPersons: !prevState.showPersons,
+        toggleTimes: ++prevState.toggleTimes
+      });
     });
   }
 
@@ -67,10 +72,10 @@ class App extends PureComponent {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes= {classes.App}>
         <Cockpit appTitle= {this.props.title} persons= {this.state.persons} clicked= {this.togglePersonHandler} showPersons = {this.state.showPersons}/>
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }

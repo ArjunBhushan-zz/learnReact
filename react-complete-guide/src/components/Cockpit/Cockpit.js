@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Cockpit.css';
-import Parallel from './../../hoc/Parallel';
+import Auxiliary from './../../hoc/Auxiliary';
 const cockpit = (props) => {
   let btnClass = classes.Button;
   if (props.showPersons){
@@ -15,10 +15,10 @@ const cockpit = (props) => {
     assignClasses.push(classes.bold);
   }
   return (
-  <Parallel>
+  <Auxiliary>
     <h1 className= {assignClasses.join(' ')}>{props.appTitle}</h1>
     <button className= {btnClass} onClick={props.clicked}>Toggle Persons</button>
-  </Parallel>
+  </Auxiliary>
   );
 };
 

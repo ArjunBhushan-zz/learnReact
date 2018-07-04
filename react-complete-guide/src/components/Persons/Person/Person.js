@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import classes from './Person.css';
-
+import WithClass from './../../../hoc/WithClass';
+import PropTypes from 'prop-types';
 // const person = (props) => {
 //   return (
 //     <div className={classes.Person}>
@@ -25,13 +26,19 @@ class Person extends Component {
   render(){
     console.log('[Person.js] Inside render');
     return (
-      <div className={classes.Person}>
+      <WithClass classes={classes.Person}>
         <p onClick={this.props.click} >I'm {this.props.name} and I am {this.props.age} years old!</p>
         {this.props.children}
         <input type="text" onChange={this.props.change} value={this.props.name}/>
-      </div>
+      </WithClass>
     );
   }
 }
 
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  change: PropTypes.func
+}
 export default Person;
