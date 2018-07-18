@@ -7,10 +7,16 @@ class FullPost extends Component {
     post: null
   }
   //if there is a change in id, or if an initial id is given
-  componentDidMount() {
-    console.log(this.props.match.params.id);
+  componentWillMount() {
+    this.loadData();
+  }
+  componentDidUpdate(){
+    this.loadData();
+  }
+
+  loadData = () => {
     if (this.props.match.params.id){
-      if (!this.state.post || this.state.post.id !== this.props.match.params.id){
+      if (!this.state.post || this.state.post.id !== +this.props.match.params.id){
         axios.get(`/posts/${this.props.match.params.id}`)
           .then((res) => {
             const post = res.data;
