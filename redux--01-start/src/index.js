@@ -8,6 +8,7 @@ import counterReducer from './store/reducers/counter';
 import resultsReducer from './store/reducers/results';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+
 const logger = (store) => {
   return (next) => {
     return (action) => {
