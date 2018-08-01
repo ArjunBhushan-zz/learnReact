@@ -1,5 +1,18 @@
-export {addIngredient, removeIngredient, initIngredients} from './burgerBuilder.js';
+export {
+  addIngredient,
+  removeIngredient,
+  initIngredients
+} from './burgerBuilder.js';
 
-export {purchaseBurger, purchaseInit, fetchOrders} from './order';
+export {
+  purchaseBurger,
+  purchaseInit,
+  fetchOrders
+} from './order';
 
-export {auth, logout} from './auth';
+export {
+  auth,
+  logout,
+  setAuthRedirectPath,
+  authCheckState
+} from './auth';
